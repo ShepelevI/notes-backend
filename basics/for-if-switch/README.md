@@ -1,4 +1,4 @@
-### Прерывание `for/switch` или `for/select`
+#### Прерывание for/switch или for/select
 
     for {
         switch f() {
