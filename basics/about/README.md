@@ -201,38 +201,38 @@
 что свойство `s` будет проинициализировано верным типом (дополнительно проверяя его на `nil`)):
 
 
-    import (
-        "errors"
-        "fmt"
-    )
+      import (
+          "errors"
+          "fmt"
+      )
 
-    type speaker interface {
-        Speak() string
-    }
+      type speaker interface {
+          Speak() string
+      }
 
-    type Foo struct {
-      s speaker // s *Foo - было бы плохо
-    }
+      type Foo struct {
+          s speaker // s *Foo - было бы плохо
+      }
 
-    func NewFoo(s speaker) (*Foo, error) {
-      if s == nil {
-          return nil, errors.New("speaker is nil")
-    }
+      func NewFoo(s speaker) (*Foo, error) {
+          if s == nil {
+              return nil, errors.New("speaker is nil")
+      }
 
-    return &Foo{s: s}, nil
-    }
+      return &Foo{s: s}, nil
+      }
 
-    func (f Foo) SaySomething() string { return f.s.Speak() }
+      func (f Foo) SaySomething() string { return f.s.Speak() }
 
-    func main() {
-        var foo, err = NewFoo(someSpeaker)
+      func main() {
+          var foo, err = NewFoo(someSpeaker)
 
-        if err != nil {
-            panic(err)
-    }
+          if err != nil {
+              panic(err)
+      }
 
-    fmt.Println(foo.SaySomething()) // зависит от реализации speaker
-    }
+      fmt.Println(foo.SaySomething()) // зависит от реализации speaker
+      }
 
 
 #### Дженерики
